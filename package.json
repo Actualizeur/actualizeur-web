@@ -5,7 +5,7 @@
   "author": "Alec M Khoury <alec@aceable.com>",
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js && nodemon server/src/app.js",
     "start": "npm run dev",
     "unit": "jest --config test/unit/jest.conf.js --coverage",
     "e2e": "node test/e2e/runner.js",
@@ -14,7 +14,17 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "aws-sdk": "^2.223.1",
     "axios": "^0.18.0",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "dns": "^0.2.2",
+    "express": "^4.16.3",
+    "module": "^1.2.5",
+    "mongoose": "^5.0.13",
+    "morgan": "^1.9.0",
+    "nodemon": "^1.17.3",
+    "nuxt": "^1.4.0",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },

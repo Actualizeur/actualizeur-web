@@ -1,10 +1,13 @@
-const express = require('express');
+// Express setup and other middleware
+const app = require('express')();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const morgan = require('morgan');
-var Post = require('../models/post');
+const Post = require('../models/post');
+const mongoose = require('mongoose');
 
-const app = express();
+// Nuxt configuration
+
 app.use(morgan('combined'));
 app.use(bodyParser.json());
 app.use(cors());
@@ -20,7 +23,6 @@ app.get('/posts', (req, res) => {
   }).sort({ _id: -1 });
 });
 
-var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/posts');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error'));

@@ -6,11 +6,10 @@ const morgan = require('morgan');
 const Post = require('../models/post');
 const mongoose = require('mongoose');
 
-// Nuxt configuration
-
 app.use(morgan('combined'));
 app.use(bodyParser.json());
 app.use(cors());
+
 
 app.get('/posts', (req, res) => {
   Post.find({}, 'title description', function(error, posts) {

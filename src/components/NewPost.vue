@@ -16,13 +16,13 @@
 </template>
 
 <script>
-import PostsService from '../services/PostsService';
+import PostsService from "../services/PostsService";
 export default {
-  name: 'NewPost',
+  name: "NewPost",
   data() {
     return {
-      title: '',
-      description: ''
+      title: "",
+      description: ""
     };
   },
   methods: {
@@ -31,7 +31,7 @@ export default {
         title: this.title,
         description: this.description
       });
-      this.$router.push({ name: 'Posts' });
+      this.$router.push({ name: "Posts" });
     }
   }
 };

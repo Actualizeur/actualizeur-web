@@ -5,14 +5,15 @@
       <router-link to="/discover" class="nav-item">Discover</router-link> |
       <router-link to="/about" class="nav-item">About</router-link> |
       <router-link to="/posts" class="nav-item">Create Project</router-link> |
-      <router-link to="/signup" class="nav-item">Sign In</router-link>
+      <router-link to="/signup" class="nav-item">Sign Up</router-link>
     </nav>
   </div>
 </template>
 
 <script>
-
 </script>
 <style type="text/css">
-
+.nav-item {
+  padding: 20px;
+}
 </style>

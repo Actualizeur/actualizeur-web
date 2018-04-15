@@ -29,9 +29,9 @@
 </template>
 
 <script>
-import PostsService from '../services/PostsService';
+import PostsService from "../services/PostsService";
 export default {
-  name: 'posts',
+  name: "posts",
   data() {
     return {
       posts: []
@@ -48,7 +48,7 @@ export default {
     async deletePost(id) {
       await PostsService.deletePost(id);
       this.getPosts();
-      this.$router.push({ name: 'Posts' });
+      this.$router.push({ name: "Posts" });
     }
   }
 };

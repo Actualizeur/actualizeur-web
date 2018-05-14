@@ -1,6 +1,7 @@
 <template>
   <div class="about">
     This area is for telling people about the company and vision.
+    <div v-if="isAuthenticated">You're Authenticated!</div>
   </div>
 </template>
 
@@ -32,6 +33,11 @@ export default {
         description: this.description
       });
       this.$router.push({ name: "Posts" });
+    }
+  },
+  computed: {
+    isAuthenticated() {
+      return this.$store.getters.isAuthenticated;
     }
   }
 };

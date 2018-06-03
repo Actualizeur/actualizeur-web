@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link type="text/css" rel="stylesheet" href="./landStyle.css" />
+    <meta charset="UTF-8">
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+function dataWord() {
+  $('[data-words]').attr('data-words', function(i, d) {
+    var $self = $(this),
+      $words = d.split('|'),
+      tot = $words.length,
+      c = 0;
+
+    // CREATE SPANS INSIDE SPAN
+    for (var i = 0; i < tot; i++)
+      $self.append($('<span/>', { text: $words[i] }));
+
+    // COLLECT WORDS AND HIDE
+    $words = $self.find('span').hide();
+
+    // ANIMATE AND LOOP
+    (function loop() {
+      $self.animate({ width: $words.eq(c).width() });
+      $words
+        .stop()
+        .fadeOut()
+        .eq(c)
+        .fadeIn()
+        .delay(2000)
+        .show(0, loop);
+      c = ++c % tot;
+    })();
+  });
+}
+
+// dataWord(); // If you don't use external fonts use this on DOM ready; otherwise use:
+$(window).on('load', dataWord);
+</script>
+<body>
+  <header>
+    <h1>Actualizeur</h1>
+  </header>
+  <div class="container">
+      <div class="header">
+    <div class="header-content">
+      <h1>It's time to Actualize your <span data-words="projects|vision|goals"></span></h1>
+    </div>
+  </div>
+  <div class="image-social">
+    <img src="./assets/influencer.svg" alt="Influencer" id="Influencer">
+    <img src="./assets/005-chat.svg" alt="Chat" id="Chat">
+    <img src="./assets/filter.svg" alt="Filter" id="Filter">
+  </div>
+  <div class="cta">
+    <div class="cta-content">
+      <h1>
+        Social Media is a drag.
+      </h1>
+      <h2>
+        Social Media today puts everything through a filter. We spend all day looking at what people say, not <strong><i>what they do.</i></strong>
+      </h2>
+    </div>
+  </div>
+  <div class="mission">
+    <div class="mission-content">
+      <h1>Social Media today is unmanageable, superficial, and distracts us from what we really want to accomplish.</h1>
+      <h3>This is the sub-heading</h3>
+    </div>
+  </div>
+</div>
+</body>
+</html>

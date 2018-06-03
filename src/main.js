@@ -4,7 +4,7 @@ import Vue from "vue";
 import App from "./App";
 import router from "./router/index";
 import axios from './backend/vue-axios';
-import store from './store/store';
+import index from './store/index';
 
 Vue.config.productionTip = false;
 
@@ -13,7 +13,7 @@ new Vue({
   el: "#app",
   router,
   axios,
-  store,
+  store: index,
   components: { App },
   template: "<App/>"
 });

@@ -8,6 +8,7 @@ import About from "../components/about";
 import newUser from "../components/newUser";
 import Users from "../components/Users";
 import Login from "../components/Login";
+import PageNotFound from "../components/pageNotFound";
 
 Vue.use(Router);
 
@@ -52,6 +53,9 @@ export default new Router({
       path: "/login",
       name: "Login",
       component: Login
+    },
+    { path: "*",
+      component: PageNotFound
     }
   ]
 });

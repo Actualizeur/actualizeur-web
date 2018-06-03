@@ -10,7 +10,7 @@ const {
 } = require('../models/models');
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
-const config =('../config/database');
+const config = require('../config/database');
 
 // Signup
 router.post('/signup', (req, res, next) => {
@@ -32,7 +32,6 @@ router.post('/signup', (req, res, next) => {
 
 // Authenticate
 router.post('/login', (req, res, next) => {
-  console.log('You made it here');
   const username = req.body.username;
   const password = req.body.password;
 
@@ -45,7 +44,7 @@ router.post('/login', (req, res, next) => {
   comparePassword(password, user.password, (err, isMatch) => {
       if(err) throw err;
       if(isMatch) {
-        const token = jwt.sign(user, config.secret, {
+        const token = jwt.sign(user.toJSON(), config.secret, {
           expiresIn: 604800
         });
 

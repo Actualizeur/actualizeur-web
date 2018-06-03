@@ -3,8 +3,8 @@
     <form class="form-signin" @submit.prevent="login">
       <h2 class="form-signin-heading">Please sign in</h2>
       <div class="alert alert-danger" v-if="error">{{ error }}</div>
-      <label for="inputEmail" class="sr-only">Email address</label>
-      <input v-model="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+      <label for="inputUsername" class="sr-only">Username</label>
+      <input v-model="username" type="username" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
       <label for="inputPassword" class="sr-only">Password</label>
       <input v-model="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
@@ -13,25 +13,23 @@
 </template>
 
 <script>
-  import axios from 'axios';
+  import {AUTH_REQUEST} from '../store/actions/auth';
 
   export default {
-    name: 'Login',
+    name: 'login',
     data () {
       return {
-        email: '',
+        username: '',
         password: '',
         error: null
       }
     },
     methods: {
-      login() {
-        this.$store.dispatch("login", {
-          email: this.email,
-          password: this.password
-        }).then(() => {
-          this.$router.push("/")
-        });
+      login: function () {
+        const { username, password } = this;
+        this.$store.dispatch(AUTH_REQUEST, { username, password }).then(() => {
+          this.$router.push('/')
+        })
       }
     }
     // created () {

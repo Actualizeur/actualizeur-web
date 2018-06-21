@@ -3,12 +3,12 @@ require('./check-versions')()
 
 process.env.NODE_ENV = 'production'
 
-const ora = require('ora')
-const rm = require('rimraf')
-const path = require('path')
-const chalk = require('chalk')
-const webpack = require('webpack')
-const config = require('../config')
+const ora = require('ora');
+const rm = require('rimraf');
+const path = require('path');
+const chalk = require('chalk');
+const webpack = require('webpack');
+const config = require('../config');
 const webpackConfig = require('./webpack.prod.conf')
 
 const spinner = ora('building for production...')
@@ -25,7 +25,7 @@ rm(path.join(config.build.assetsRoot, config.build.assetsSubDirectory), err => {
       children: false, // If you are using ts-loader, setting this to true will make TypeScript errors show up during build.
       chunks: false,
       chunkModules: false
-    }) + '\n\n')
+    }) + '\n\n');
 
     if (stats.hasErrors()) {
       console.log(chalk.red('  Build failed with errors.\n'))

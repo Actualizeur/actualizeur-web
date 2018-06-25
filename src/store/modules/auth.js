@@ -15,7 +15,7 @@ const actions = {
     return new Promise((resolve, reject) => { // The Promise used for router redirect in login
       commit(AUTH_REQUEST);
       console.log(user);
-      axios.post('http://localhost:8081/users/login', { username: user.username, password: user.password })
+      axios.post('https://actualizeur-api.herokuapp.com/users/login', { username: user.username, password: user.password })
         .then(res => {
           console.log(res);
           const token = res.data.token;

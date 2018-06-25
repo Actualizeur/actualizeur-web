@@ -2,7 +2,7 @@
 
 import axios from 'axios'
 
-const API_URL = process.env.API_URL || 'http://localhost:8081'
+const API_URL = process.env.API_URL || 'https://actualizeur-api.herokuapp.com/'
 
 export default axios.create({
   baseURL: API_URL,

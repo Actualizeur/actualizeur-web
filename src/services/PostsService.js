@@ -1,23 +1,23 @@
-import Api from "./Api";
+import Api from './Api'
 
 export default {
-  fetchPosts() {
-    return Api().get("posts");
+  fetchPosts () {
+    return Api().get('posts')
   },
 
-  addPost(params) {
-    return Api().post("posts", params);
+  addPost (params) {
+    return Api().post('posts', params)
   },
 
-  updatePost(params) {
-    return Api().put("posts/" + params.id, params);
+  updatePost (params) {
+    return Api().put('posts/' + params.id, params)
   },
 
-  getPost(params) {
-    return Api().get("post/" + params.id);
+  getPost (params) {
+    return Api().get('post/' + params.id)
   },
 
-  deletePost(id) {
-    return Api().delete("posts/" + id);
+  deletePost (id) {
+    return Api().delete('posts/' + id)
   }
-};
+}

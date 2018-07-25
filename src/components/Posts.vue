@@ -11,7 +11,7 @@
           <td width="550">Description</td>
           <td width="100" align="center">Action</td>
         </tr>
-        <tr v-for="post in posts">
+        <tr v-for="post in posts" :key="post">
           <td>{{ post.title }}</td>
           <td>{{ post.description }}</td>
           <td align="center">
@@ -29,29 +29,29 @@
 </template>
 
 <script>
-import PostsService from "../services/PostsService";
+import PostsService from '../services/PostsService'
 export default {
-  name: "posts",
-  data() {
+  name: 'posts',
+  data () {
     return {
       posts: []
-    };
+    }
   },
-  mounted() {
-    this.getPosts();
+  mounted () {
+    this.getPosts()
   },
   methods: {
-    async getPosts() {
-      const response = await PostsService.fetchPosts();
-      this.posts = response.data.posts;
+    async getPosts () {
+      const response = await PostsService.fetchPosts()
+      this.posts = response.data.posts
     },
-    async deletePost(id) {
-      await PostsService.deletePost(id);
-      this.getPosts();
-      this.$router.push({ name: "Posts" });
+    async deletePost (id) {
+      await PostsService.deletePost(id)
+      this.getPosts()
+      this.$router.push({ name: 'Posts' })
     }
   }
-};
+}
 </script>
 <style type="text/css">
 .table-wrap {

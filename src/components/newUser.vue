@@ -21,31 +21,31 @@
 </template>
 
 <script>
-import UsersService from "../services/UsersService";
+import UsersService from '../services/UsersService'
 export default {
-  name: "newUser",
-  data() {
+  name: 'newUser',
+  data () {
     return {
-      firstName: "",
-      lastName: "",
-      username: "",
-      password: "",
-      summary: ""
-    };
+      firstName: '',
+      lastName: '',
+      username: '',
+      password: '',
+      summary: ''
+    }
   },
   methods: {
-    async addUser() {
+    async addUser () {
       await UsersService.addUser({
         firstName: this.firstName,
         lastName: this.lastName,
         username: this.username,
         password: this.password,
         summary: this.summary
-      });
-      this.$router.push({ name: "Home" });
+      })
+      this.$router.push({ name: 'Home' })
     }
   }
-};
+}
 </script>
 <style type="text/css">
 .form input,

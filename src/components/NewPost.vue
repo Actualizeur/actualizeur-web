@@ -11,30 +11,33 @@
         <div>
           <button class="app_post_btn" @click="addPost">Add</button>
         </div>
+        <TimedPost></TimedPost>
       </div>
   </div>
 </template>
 
 <script>
-import PostsService from "../services/PostsService";
+import PostsService from '../services/PostsService'
+import TimedPost from './timedPost';
 export default {
-  name: "NewPost",
-  data() {
+  name: 'NewPost',
+  components: {TimedPost},
+  data () {
     return {
-      title: "",
-      description: ""
-    };
+      title: '',
+      description: ''
+    }
   },
   methods: {
-    async addPost() {
+    async addPost () {
       await PostsService.addPost({
         title: this.title,
         description: this.description
-      });
-      this.$router.push({ name: "Posts" });
+      })
+      this.$router.push({ name: 'Posts' })
     }
   }
-};
+}
 </script>
 <style type="text/css">
 .form input,

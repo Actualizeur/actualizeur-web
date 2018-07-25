@@ -6,7 +6,7 @@ const state = { status: '', profile: {} }
 
 const getters = {
   getProfile: state => state.profile,
-  isProfileLoaded: state => !!state.profile.name,
+  isProfileLoaded: state => !!state.profile.name
 }
 
 const actions = {
@@ -20,8 +20,8 @@ const actions = {
         // if resp is unauthorized, logout, to
         dispatch(AUTH_LOGOUT)
       })
-  },
-};
+  }
+}
 
 const mutations = {
   [USER_REQUEST]: (state) => {
@@ -37,11 +37,11 @@ const mutations = {
   [AUTH_LOGOUT]: (state) => {
     state.profile = {}
   }
-};
+}
 
 export default {
   state,
   getters,
   actions,
-  mutations,
+  mutations
 }

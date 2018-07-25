@@ -13,64 +13,63 @@
 </template>
 
 <script>
-  import {AUTH_REQUEST} from '../store/actions/auth';
+import {AUTH_REQUEST} from '../store/actions/auth'
 
-  export default {
-    name: 'login',
-    data () {
-      return {
-        username: '',
-        password: '',
-        error: null
-      }
-    },
-    methods: {
-      login: function () {
-        const { username, password } = this;
-        this.$store.dispatch(AUTH_REQUEST, { username, password }).then(() => {
-          this.$router.push('/')
-        })
-      }
+export default {
+  name: 'login',
+  data () {
+    return {
+      username: '',
+      password: '',
+      error: null
     }
-    // created () {
-    //   this.checkCurrentLogin()
-    // },
-    // updated () {
-    //   this.checkCurrentLogin()
-    // },
-    // methods: {
-    //   login () {
-    //     axios.post('http://localhost:8080/login', { user: this.email, password: this.password })
-    //       .then(request => this.loginSuccessful(request))
-    //       .catch(() => this.loginFailed())
-    //   },
-    //   loginSuccessful(req) {
-    //     if (!req.data.token) {
-    //       this.loginFailed()
-    //       return
-    //     }
-    //
-    //     localStorage.token = req.data.token
-    //     this.error = false
-    //
-    //     this.$router.replace(this.$route.query.redirect || '/posts')
-    //   },
-    //
-    //   loginFailed () {
-    //     this.error = 'Login failed!'
-    //     delete localStorage.token
-    //   },
-    //   checkCurrentLogin () {
-    //     if (localStorage.token) {
-    //       this.$router.replace(this.$route.query.redirect || '/authors')
-    //     }
-    //   }
-    // }
+  },
+  methods: {
+    login: function () {
+      const { username, password } = this
+      this.$store.dispatch(AUTH_REQUEST, { username, password }).then(() => {
+        this.$router.push('/')
+      })
+    }
   }
+  // created () {
+  //   this.checkCurrentLogin()
+  // },
+  // updated () {
+  //   this.checkCurrentLogin()
+  // },
+  // methods: {
+  //   login () {
+  //     axios.post('http://localhost:8080/login', { user: this.email, password: this.password })
+  //       .then(request => this.loginSuccessful(request))
+  //       .catch(() => this.loginFailed())
+  //   },
+  //   loginSuccessful(req) {
+  //     if (!req.data.token) {
+  //       this.loginFailed()
+  //       return
+  //     }
+  //
+  //     localStorage.token = req.data.token
+  //     this.error = false
+  //
+  //     this.$router.replace(this.$route.query.redirect || '/posts')
+  //   },
+  //
+  //   loginFailed () {
+  //     this.error = 'Login failed!'
+  //     delete localStorage.token
+  //   },
+  //   checkCurrentLogin () {
+  //     if (localStorage.token) {
+  //       this.$router.replace(this.$route.query.redirect || '/authors')
+  //     }
+  //   }
+  // }
+}
 </script>
 
 <style lang="css">
-
 
   .login-wrapper {
     background: #fff;

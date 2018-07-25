@@ -13,23 +13,23 @@
 </template>
 
 <script>
-  import { AUTH_LOGOUT } from '../store/actions/auth';
+import { AUTH_LOGOUT } from '../store/actions/auth'
 
-  export default {
-    methods: {
-      logout: function () {
-        this.$store.dispatch(AUTH_LOGOUT)
-          .then(() => {
-            this.$router.push('/login')
-          })
-      }
-    },
-    computed: {
-      isAuthenticated() {
-        return this.$store.getters.isAuthenticated;
-      }
+export default {
+  methods: {
+    logout: function () {
+      this.$store.dispatch(AUTH_LOGOUT)
+        .then(() => {
+          this.$router.push('/login')
+        })
     }
-  };
+  },
+  computed: {
+    isAuthenticated () {
+      return this.$store.getters.isAuthenticated
+    }
+  }
+}
 </script>
 <style type="text/css">
 .nav-item {

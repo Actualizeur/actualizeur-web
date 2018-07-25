@@ -11,7 +11,7 @@
           <td width="550">Description</td>
           <td width="100" align="center">Action</td>
         </tr>
-        <tr v-for="user in users">
+        <tr v-for="user in users" :key="user">
           <td>{{ user.firstName }}</td>
           <td>{{ user.summary }}</td>
           <td align="center">
@@ -29,29 +29,29 @@
 </template>
 
 <script>
-  import UsersService from "../services/UsersService";
-  export default {
-    name: "users",
-    data() {
-      return {
-        users: []
-      };
-    },
-    mounted() {
-      this.getUser();
-    },
-    methods: {
-      async getUser() {
-        const response = await UsersService.fetchUsers();
-        this.users = response.data.users;
-      },
-      async deleteUser(id) {
-        await UsersService.deleteUser(id);
-        this.getUser();
-        this.$router.push({ name: "Users" });
-      }
+import UsersService from '../services/UsersService'
+export default {
+  name: 'users',
+  data () {
+    return {
+      users: []
     }
-  };
+  },
+  mounted () {
+    this.getUser()
+  },
+  methods: {
+    async getUser () {
+      const response = await UsersService.fetchUsers()
+      this.users = response.data.users
+    },
+    async deleteUser (id) {
+      await UsersService.deleteUser(id)
+      this.getUser()
+      this.$router.push({ name: 'Users' })
+    }
+  }
+}
 </script>
 <style type="text/css">
   .table-wrap {

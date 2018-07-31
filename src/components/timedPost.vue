@@ -22,13 +22,20 @@ export default {
   },
   methods: {
     startTimedPost: function () {
-      const workTime = this.workTime * 60000
+      let workTime = this.workTime * 60000
       new CountDownTimer(workTime, function (times, parameters) {
         console.log(times)
-        PostsService.addPost({
-          workTime: times
-        })
+        workTime = times
       })
+      PostsService.addPost({
+        title: 'test title time',
+        description: 'test descript, time',
+        workTime: workTime
+      })
+      setInterval(PostsService.updatePost({
+        workTime: workTime
+      }), 3000);
+
     }
   }
 }

@@ -9,19 +9,52 @@
           <textarea rows="15" cols="15" placeholder="DESCRIPTION" v-model="description"></textarea>
         </div>
         <div>
+          <input type="text" name="title" placeholder="TITLE" v-model="title">
+        </div>
+        <div>
+          <textarea rows="15" cols="15" placeholder="DESCRIPTION" v-model="description"></textarea>
+        </div>
+        <div>
+          <input type="text" name="title" placeholder="TITLE" v-model="title">
+        </div>
+        <div>
+          <textarea rows="15" cols="15" placeholder="DESCRIPTION" v-model="description"></textarea>
+        </div>
+        <div>
+          <input type="text" name="title" placeholder="TITLE" v-model="title">
+        </div>
+        <div>
+          <textarea rows="15" cols="15" placeholder="DESCRIPTION" v-model="description"></textarea>
+        </div>
+        <div>
+          <input type="text" name="title" placeholder="TITLE" v-model="title">
+        </div>
+        <div>
+          <textarea rows="15" cols="15" placeholder="DESCRIPTION" v-model="description"></textarea>
+        </div>
+        <div>
+          <input type="text" name="title" placeholder="TITLE" v-model="title">
+        </div>
+        <div>
+          <textarea rows="15" cols="15" placeholder="DESCRIPTION" v-model="description"></textarea>
+        </div>
+        <div>
           <button class="app_post_btn" @click="addPost">Add</button>
         </div>
         <TimedPost></TimedPost>
       </div>
+    <TextPost></TextPost>
   </div>
 </template>
 
 <script>
 import PostsService from '../services/PostsService'
 import TimedPost from './timedPost';
+import TextPost from './createPost';
+
 export default {
   name: 'NewPost',
-  components: {TimedPost},
+  components: {TextPost, TimedPost},
   data () {
     return {
       title: '',

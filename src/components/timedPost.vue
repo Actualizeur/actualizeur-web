@@ -17,25 +17,25 @@ export default {
   name: 'timedPost',
   data: function () {
     return {
-      workTime: ''
+      workTime: '',
+      workTimeExpire: ''
     }
   },
   methods: {
     startTimedPost: function () {
       let workTime = this.workTime * 60000
+      let current = Date.now()
+      let workTimeExpire = new Date(current += workTime)
+      PostsService.addPost({
+        title: 'Test 08-05-18',
+        description: 'test descript, time',
+        workTime: workTime,
+        workTimeExpire: workTimeExpire
+      })
       new CountDownTimer(workTime, function (times, parameters) {
         console.log(times)
         workTime = times
       })
-      PostsService.addPost({
-        title: 'test title time',
-        description: 'test descript, time',
-        workTime: workTime
-      })
-      setInterval(PostsService.updatePost({
-        workTime: workTime
-      }), 3000);
-
     }
   }
 }

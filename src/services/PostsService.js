@@ -13,6 +13,10 @@ export default {
     return Api().put('posts/' + params.id, params)
   },
 
+  getPosts (params) {
+    return Api().get('posts/' + params.id)
+  },
+
   getPost (params) {
     return Api().get('post/' + params.id)
   },

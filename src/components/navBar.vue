@@ -13,12 +13,12 @@
 </template>
 
 <script>
-import { AUTH_LOGOUT } from '../store/actions/auth'
+import { authLogout } from '../store/actions/auth'
 
 export default {
   methods: {
     logout: function () {
-      this.$store.dispatch(AUTH_LOGOUT)
+      this.$store.dispatch(authLogout)
         .then(() => {
           this.$router.push('/login')
         })

@@ -1,9 +1,14 @@
 /* eslint-disable promise/param-names */
-import { AUTH_REQUEST, AUTH_ERROR, AUTH_SUCCESS, AUTH_LOGOUT } from '../actions/auth'
-import { USER_REQUEST } from '../actions/user'
+import { authRequest, authError, authSuccess, authLogout, saveUser } from '../actions/auth'
+// import {saveUser, userRequest} from '../actions/user'
 import axios from 'axios'
 
-const state = { token: localStorage.getItem('user-token') || '', status: '', hasLoadedOnce: false }
+const state = {
+  token: localStorage.getItem('user-token') || '',
+  status: '',
+  hasLoadedOnce: false,
+  user: ''
+}
 
 const getters = {
   isAuthenticated: state => !!state.token,
@@ -11,31 +16,32 @@ const getters = {
 }
 
 const actions = {
-  [AUTH_REQUEST]: ({commit, dispatch}, user) => {
+  authRequest: ({commit, dispatch}, user) => {
     return new Promise((resolve, reject) => { // The Promise used for router redirect in login
-      commit(AUTH_REQUEST)
-      console.log(user)
+      commit(authRequest)
       axios.post('https://actualizeur-api.herokuapp.com/users/login', { username: user.username, password: user.password })
         .then(res => {
           console.log(res)
+          const user = res.data.user
           const token = res.data.token
           localStorage.setItem('user-token', token) // index the token in localstorage
           axios.defaults.headers.common['Authorization'] = token
-          commit(AUTH_SUCCESS, token)
+          commit(authSuccess, token)
+          commit(saveUser, user)
           // you have your token, now log in your user :)
-          // dispatch(USER_REQUEST);
+          // dispatch(userRequest);
           resolve(res)
         })
         .catch(err => {
-          commit(AUTH_ERROR, err)
+          commit(authError, err)
           localStorage.removeItem('user-token') // if the request fails, remove any possible user token if possible
           reject(err)
         })
     })
   },
-  [AUTH_LOGOUT]: ({commit, dispatch}) => {
+  authLogout: ({commit, dispatch}) => {
     return new Promise((resolve, reject) => {
-      commit(AUTH_LOGOUT)
+      commit(authLogout)
       localStorage.removeItem('user-token') // clear your user's token from localstorage
       // remove the axios default header
       delete axios.defaults.headers.common['Authorization']
@@ -45,19 +51,22 @@ const actions = {
 }
 
 const mutations = {
-  [AUTH_REQUEST]: (state) => {
+  authRequest: (state) => {
     state.status = 'loading'
   },
-  [AUTH_SUCCESS]: (state, token) => {
+  authSuccess: (state, token) => {
     state.status = 'success'
     state.token = token
   },
-  [AUTH_ERROR]: (state) => {
+  authError: (state) => {
     state.status = 'error'
     state.hasLoadedOnce = true
   },
-  [AUTH_LOGOUT]: (state) => {
+  authLogout: (state) => {
     state.token = ''
+  },
+  saveUser: (state, user) => {
+    state.user = user
   }
 }
 

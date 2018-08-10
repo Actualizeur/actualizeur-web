@@ -1,6 +1,6 @@
-import { USER_REQUEST, USER_ERROR, USER_SUCCESS } from '../actions/user'
+import { userRequest, userError, userSuccess } from '../actions/user'
 import Vue from 'vue'
-import { AUTH_LOGOUT } from '../actions/auth'
+import { authLogout } from '../actions/auth'
 
 const state = { status: '', profile: {} }
 
@@ -10,31 +10,31 @@ const getters = {
 }
 
 const actions = {
-  [USER_REQUEST]: ({commit, dispatch}) => {
-    commit(USER_REQUEST)
+  userRequest: ({commit, dispatch}) => {
+    commit(userRequest)
       .then(res => {
-        commit(USER_SUCCESS, res)
+        commit(userSuccess, res)
       })
       .catch(res => {
-        commit(USER_ERROR)
+        commit(userError)
         // if resp is unauthorized, logout, to
-        dispatch(AUTH_LOGOUT)
+        dispatch(authLogout)
       })
   }
 }
 
 const mutations = {
-  [USER_REQUEST]: (state) => {
+  userRequest: (state) => {
     state.status = 'loading'
   },
-  [USER_SUCCESS]: (state, resp) => {
+  userSuccess: (state, resp) => {
     state.status = 'success'
     Vue.set(state, 'profile', resp)
   },
-  [USER_ERROR]: (state) => {
+  userError: (state) => {
     state.status = 'error'
   },
-  [AUTH_LOGOUT]: (state) => {
+  authLogout: (state) => {
     state.profile = {}
   }
 }

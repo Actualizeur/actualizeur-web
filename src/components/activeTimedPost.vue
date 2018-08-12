@@ -5,20 +5,26 @@
 </template>
 
 <script>
-// import PostsService from '../services/PostsService'
+import PostsService from '../services/PostsService'
+
 export default {
-  name: 'activeTimedPost'
-}
-  mounted () {
+  name: 'activeTimedPost',
+  data() {
+    return {
+      posts: []
+    }
+  },
+  mounted() {
     this.getPosts()
   },
   methods: {
-    async getPosts () {
-      const response = await PostsService.getPosts({
-        id: req.
-      })
-      this.posts = response.data.posts
-    }
+    // async getPosts() {
+    //   const response = await PostsService.getPosts({
+    //     id:
+    //   })
+    //   this.posts = response.data.posts
+    // }
+  },
 //     async deletePost (id) {
 //       await PostsService.deletePost(id)
 //       this.getPosts()

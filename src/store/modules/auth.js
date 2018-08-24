@@ -12,7 +12,8 @@ const state = {
 
 const getters = {
   isAuthenticated: state => !!state.token,
-  authStatus: state => state.status
+  authStatus: state => state.status,
+  userId: state => state.user.id
 }
 
 const actions = {

@@ -11,7 +11,6 @@
 </template>
 
 <script>
-import CountdownTimer from 'countdown-timer-js'
 import PostsService from '../services/PostsService'
 
 export default {
@@ -23,36 +22,40 @@ export default {
     }
   },
   methods: {
-    msToHMS: function (ms) {
-      // 1- Convert to seconds:
-      var seconds = ms / 1000
-      // 2- Extract hours:
-      var hours = parseInt(seconds / 3600) // 3,600 seconds in 1 hour
-      seconds = seconds % 3600 // seconds remaining after extracting hours
-      // 3- Extract minutes:
-      var minutes = parseInt(seconds / 60) // 60 seconds in 1 minute
-      // 4- Keep only seconds not extracted to minutes:
-      seconds = seconds % 60
-      hours = (hours < 10) ? '0' + hours : hours
-      minutes = (minutes < 10) ? '0' + minutes : minutes
-      seconds = (seconds < 10) ? '0' + seconds : seconds
-      return (hours + ':' + minutes + ':' + seconds)
+    countdownTimer: function (expireTimeMS) {
+      let x = setInterval(function () {
+        let now = new Date().getTime()
+
+        let distance = expireTimeMS - now;
+
+        let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+        let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
+        let seconds = Math.floor((distance % (1000 * 60)) / 1000)
+
+        hours = (hours < 10) ? '0' + hours : hours
+        minutes = (minutes < 10) ? '0' + minutes : minutes
+        seconds = (seconds < 10) ? '0' + seconds : seconds
+
+        this.workTime = `${hours}:${minutes}:${seconds}`;
+        console.log(this.workTime)
+        // if (countdownTime < 0) {
+        //   clearInterval(x)
+        // }
+      }, 1000)
     },
     startTimedPost: function () {
       let workTime = this.workTime * 60000
-      let current = Date.now()
-      let workTimeExpire = new Date(current += workTime)
-      workTime = this.msToHMS(workTime)
-      new CountDownTimer(workTime, function (times, parameters) {
-        console.log(times)
-        workTime = times
-      })
-      console.log(this.$store)
+      let now = new Date().getTime()
+      let expirationTime = (now + workTime)
+      this.countdownTimer(expirationTime)
       PostsService.addPost({
+        userId: this.$store.getters.userId,
         title: 'Test 08-12-18',
         description: 'description 08-12-18',
         workTime: workTime,
-        workTimeExpire: workTimeExpire
+        workTimeExpire: expirationTime,
+        isActive: true,
+        userCompleted: false
       })
     }
   }

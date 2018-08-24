@@ -1,6 +1,7 @@
 <template>
   <div class="posts">
     <h1>Posts</h1>
+    <active-timed-post></active-timed-post>
     <div v-if="posts.length > 0" class="table-wrap">
       <div>
         <router-link v-bind:to="{ name: 'NewPost' }" class="">Add Post</router-link>
@@ -31,12 +32,16 @@
 
 <script>
 import PostsService from '../services/PostsService'
+import ActiveTimedPost from './activeTimedPost'
 export default {
   name: 'posts',
   data () {
     return {
       posts: []
     }
+  },
+  components: {
+    ActiveTimedPost
   },
   mounted () {
     this.getPosts()

@@ -2,17 +2,14 @@
   <div id="app">
     <nav-bar></nav-bar>
     <router-view/>
-    <active-timed-post></active-timed-post>
   </div>
 </template>
 
 <script>
 import navBar from '@/components/navBar'
-import ActiveTimedPost from "./components/activeTimedPost";
 
 export default {
   components: {
-    ActiveTimedPost,
     navBar
   },
   name: 'App'

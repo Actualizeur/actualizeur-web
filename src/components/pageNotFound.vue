@@ -1,12 +1,13 @@
 <template>
-  <div class="Error">
-    <p>404 Error</p>
-  </div>
+    <h1>404 Error</h1>
 </template>
 
 <script>
-
+    export default {
+        name: "pageNotFound"
+    }
 </script>
-<style type="text/css">
+
+<style scoped>
 
 </style>

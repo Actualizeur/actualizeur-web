@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <nav-bar></nav-bar>
-    <router-view/>
+    <router-view class="routeView"/>
   </div>
 </template>
 
@@ -23,6 +23,8 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 3.5em;
+  background: #daf4ee;
 }
+textarea, select, input, button { outline: none; }
 </style>

@@ -16,15 +16,28 @@
     <button>Like</button>
     <button>Comment</button>
   </div>
+  <div v-for="comment in comments">
+    <comment :content="comment.text"></comment>
+  </div>
 </div>
 </template>
 <script>
+import CommentService from '../services/CommentService';
+import Comment from './comment';
+
 export default {
   name: 'homeFeedPost',
+  components: {Comment},
   props: {
     projectName: String,
     profileName: String,
-    content: String,
+    content: String
+  },
+  methods: {
+    async getComments () {
+      const response = await CommentService.getComments()
+      this.comments = response.data.comments
+    }
   }
 }
 </script>

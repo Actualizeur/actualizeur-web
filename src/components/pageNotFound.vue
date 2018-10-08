@@ -3,9 +3,9 @@
 </template>
 
 <script>
-    export default {
-        name: "pageNotFound"
-    }
+export default {
+  name: 'pageNotFound'
+}
 </script>
 
 <style scoped>

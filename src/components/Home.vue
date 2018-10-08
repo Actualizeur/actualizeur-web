@@ -1,10 +1,15 @@
 <template>
   <div class="home">
   <post-maker class="feed"></post-maker>
-    <div class="feed" v-for="post in posts" :key="postValue">
-      <HomeFeedPost project-name="post.title" profile-name="Alec Khoury" content="post.description"></HomeFeedPost>
+    <div v-if="posts.length > 0" class="table-wrap">
+      <div class="feed" v-for="post in posts" v-bind:key="post.title">
+        <HomeFeedPost project-name="post.title" profile-name="Alec Khoury" content="post.description"></HomeFeedPost>
+      </div>
     </div>
-
+    <div v-else>
+      There are no posts.. Lets add one now <br /><br />
+      <router-link v-bind:to="{ name: 'NewPost' }" class="add_post_link">Add Post</router-link>
+    </div>
   </div>
 </template>
 
